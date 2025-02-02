@@ -1,6 +1,7 @@
 import { gotScraping } from "got-scraping";
 import * as cheerio from 'cheerio'
 import callOpenAI from "./openai.js";
+import { getJsonFromGemini } from "./gemini.js";
 
 export async function tryManyTimesToGetData(url, retries = 0) {
     console.log("Starting try: " + retries)
@@ -21,7 +22,7 @@ export async function tryManyTimesToGetData(url, retries = 0) {
         const $ = cheerio.load(response.body)
         const script = $("script").filter((i, el) => $(el).html().includes("jobsSearch")).html();
         const jsonMatch = script.split(",jobs:")[1].split(",paging:")[0]
-        let jsonData = await callOpenAI(JSON.stringify(jsonMatch));
+        let jsonData = await getJsonFromGemini(JSON.stringify(jsonMatch));
         jsonData = jsonData.replace(/```json|```/g, '').trim()
         let dataParsed = JSON.parse(jsonData);
         return dataParsed;
