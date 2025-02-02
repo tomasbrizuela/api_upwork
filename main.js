@@ -2,13 +2,13 @@ import { gotScraping } from "got-scraping";
 import * as cheerio from 'cheerio'
 import callOpenAI from "./openai.js";
 
-let urlPage = "https://www.upwork.com/nx/search/jobs/?nbs=1&q=appsheet"
 export async function tryManyTimesToGetData(url, retries = 0) {
     console.log("Starting try: " + retries)
     try {
 
         const response = await gotScraping({
-            url: urlPage
+            'url': url
+
         })
 
         console.log(response.statusCode)
@@ -25,7 +25,6 @@ export async function tryManyTimesToGetData(url, retries = 0) {
         console.log(jsonData)
         jsonData = jsonData.replace(/```json|```/g, '').trim()
 
-        // console.log("Respuesta: " + jsonData)
         let dataParsed = JSON.parse(jsonData);
         return dataParsed;
 
