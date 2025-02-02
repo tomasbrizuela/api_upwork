@@ -43,7 +43,7 @@ export default async function callOpenAI(text) {
     try {
         let response = await fetch(url, options);
         let json = await response.json()
-        let data = json?.choices[0]?.message?.content
+        let data = await json?.choices[0]?.message?.content
         return data;
     } catch (error) {
         console.log("Error: " + error)

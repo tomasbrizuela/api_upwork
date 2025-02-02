@@ -7,7 +7,7 @@ export async function tryManyTimesToGetData(url, retries = 0) {
     try {
 
         const response = await gotScraping({
-            'url': url
+            'url': "https://www.upwork.com/nx/search/jobs/?nbs=1&q=appsheet"
 
         })
 

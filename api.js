@@ -20,9 +20,8 @@ app.get('/health', (req, res) => {
 })
 
 app.get('/run', async (req, res) => {
-    let url = "https://www.upwork.com/nx/search/jobs/?nbs=1&q=appsheet"
     try {
-        let data = await tryManyTimesToGetData(url, 0);
+        let data = await tryManyTimesToGetData("", 0);
         return res.status(200).send({ "Data": data })
     } catch (error) {
         res.status(400).send({ "Error": "HOLA" })
