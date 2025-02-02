@@ -11,6 +11,14 @@ app.use(helmet())
 app.use(cors())
 app.use(morgan('dev'))
 
+app.get('/health', (req, res) => {
+    try {
+        return res.status(200).send({ "Health": "Working" })
+    } catch (error) {
+        return res.status(400).send({ "Health": "Bad" })
+    }
+})
+
 app.get('/run', async (req, res) => {
     let url = "https://www.upwork.com/nx/search/jobs/?nbs=1&q=appsheet"
     try {
