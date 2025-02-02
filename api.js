@@ -5,7 +5,7 @@ import cors from 'cors';
 import { tryManyTimesToGetData } from "./main.js";
 
 const app = express();
-const PORT = 8090
+const PORT = process.env.PORT || 8090
 
 app.use(helmet())
 app.use(cors())
