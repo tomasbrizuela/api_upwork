@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import helmet from "helmet";
 import cors from 'cors';
 import { tryManyTimesToGetData } from "./main.js";
+import getIdLastJob from './checkIfNew.js'
 
 const app = express();
 const PORT = process.env.PORT || 8090
@@ -30,4 +31,13 @@ app.get('/run', async (req, res) => {
 
 app.listen(PORT, (req, res) => {
     console.log(`http://localhost:${PORT}/run`)
+})
+
+app.get('/automation', async (req, res) => {
+    try {
+        await getIdLastJob();
+        return res.status(200).send({ "Action": "Email enviado" })
+    } catch (error) {
+        return res.status(400).send({ "Error": error })
+    }
 })

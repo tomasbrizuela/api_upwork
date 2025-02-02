@@ -9,13 +9,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "angi": "file:",
     "cheerio": "^1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "got-scraping": "^4.0.8",
     "helmet": "^8.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.10.0"
   },
   "type": "module"
 }
