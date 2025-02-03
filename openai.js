@@ -14,7 +14,7 @@ export default async function callOpenAI(text) {
     const KEY = process.env.OPENAI_API_KEY
     let url = "https://api.openai.com/v1/chat/completions";
     let info = {
-        "model": "gpt-4o",
+        "model": "gpt-4o-mini",
         "store": true,
         "messages": [
             // {
