@@ -13,11 +13,12 @@ const transporter = nodemailer.createTransport({
 
 export async function sendEmail(job) {
     // send mail with defined transport object
+    let body = await generateEmailHTML(job)
     const info = await transporter.sendMail({
         from: '"Upwork Updates" <tomasagustinbrizuela@gmail.com>', // sender address
         to: "tomasagustinbrizuela@gmail.com", // list of receivers
         subject: "New Appsheet Job", // Subject line
-        html: await generateEmailHTML(job), // html body
+        html: body
     });
 
 }

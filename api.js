@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cors from 'cors';
 import { tryManyTimesToGetData } from "./main.js";
 import getIdLastJob from './checkIfNew.js'
+import { callGemini } from './gemini.js';
 
 const app = express();
 const PORT = process.env.PORT || 8090
@@ -23,6 +24,8 @@ app.get('/health', (req, res) => {
 app.get('/run', async (req, res) => {
     try {
         let data = await tryManyTimesToGetData("", 0);
+        let newProperty = await callGemini(data[0].description)
+        data[0].proposal = newProperty;
         return res.status(200).send({ "Data": data })
     } catch (error) {
         res.status(400).send({ "Error": "HOLA" })

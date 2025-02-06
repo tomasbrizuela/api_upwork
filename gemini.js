@@ -56,5 +56,6 @@ export async function getPropText(jobDescription) {
 
     let prompt = `Teniendo en cuenta esta propuesta que uso yo como template para postularme a trabajos: ${propuestaTemplate} y la descripción de esta búsqueda de trabajo en upwork para desarrolladores de appsheet: ${jobDescription}, creá un texto nuevo adaptando el template a esa descripción para que yo pueda copiarlo y pegarlo en la propuesta. Que no suene a que leiste oraciones aisladas y hablás de eso especificamente para que se note que las leiste, que sea algo real.`
     let answer = await callGemini(prompt);
-    return answer;
+    let cleanAnser = answer.replace(/\n/g, ' ');
+    return cleanAnser;
 }
