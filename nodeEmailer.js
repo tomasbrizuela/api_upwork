@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { callGemini, getPropText } from "./gemini";
+import { callGemini, getPropText } from "./gemini.js";
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
