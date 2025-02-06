@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { callGemini, getPropText } from "./gemini";
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -16,12 +17,12 @@ export async function sendEmail(job) {
         from: '"Upwork Updates" <tomasagustinbrizuela@gmail.com>', // sender address
         to: "tomasagustinbrizuela@gmail.com", // list of receivers
         subject: "New Appsheet Job", // Subject line
-        html: generateEmailHTML(job), // html body
+        html: await generateEmailHTML(job), // html body
     });
 
 }
 
-function generateEmailHTML(job) {
+async function generateEmailHTML(job) {
     let { title, uid, description } = job;
     let html = `
         <div style="text-align: left;">
@@ -39,6 +40,10 @@ function generateEmailHTML(job) {
             <div style="display: flex; gap: 8px;">
                 <p><strong>Descripción: </strong></p>
                 <p>${description}</p>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <p><strong>Propuesta: </strong></p>
+                <p>${await getPropText(description)}</p>
             </div>
         </div>
     `
