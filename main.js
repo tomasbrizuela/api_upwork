@@ -22,7 +22,13 @@ export async function tryManyTimesToGetData(url, retries = 0) {
         const script = $("script").filter((i, el) => $(el).html().includes("jobsSearch")).html();
         const jsonMatch = script.split(",jobs:")[1].split(",paging:")[0]
         let jsonData = await callOpenAI(JSON.stringify(jsonMatch));
-        jsonData = jsonData.replace(/```json|```/g, '').trim()
+        console.log("Json data is: ")
+        console.log(jsonData)
+        try {
+            jsonData = jsonData.replace(/```json|```/g, '').trim()
+        } catch (error) {
+            return error;
+        }
         let dataParsed = JSON.parse(jsonData);
         console.log(dataParsed)
         return dataParsed;
