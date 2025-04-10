@@ -29,7 +29,7 @@ app.get('/run', async (req, res) => {
         data[0].proposal = newProperty;
         return res.status(200).send({ "Data": data })
     } catch (error) {
-        res.status(400).send({ "Error": "HOLA" })
+        res.status(400).send({ "Error": error })
     }
 })
 
