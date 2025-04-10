@@ -25,6 +25,7 @@ app.get('/run', async (req, res) => {
     try {
         let data = await tryManyTimesToGetData("", 0);
         let newProperty = await callGemini(data[0].description)
+        console.log(newProperty)
         data[0].proposal = newProperty;
         return res.status(200).send({ "Data": data })
     } catch (error) {

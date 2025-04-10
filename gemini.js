@@ -32,8 +32,6 @@ export async function callGemini(prompt) {
     }
 }
 
-
-
 let job = `
 **About Us:** At R**** barbershop , we are committed to providing outstanding grooming services and a friendly environment for our clients. We are seeking a talented freelancer to help us enhance our operations by implementing automation solutions that will create a more tech-savvy experience. **Project Overview:** We are looking for an Automation Specialist who can help us streamline our processes, making it easier for clients to book appointments, make payments, and enjoy our services. Your expertise will be crucial in identifying areas for improvement and implementing effective solutions. **Key Responsibilities:** - Assess current operations and identify automation opportunities. - Implement online booking systems and digital payment solutions. - Create user-friendly interfaces to enhance client interactions. - Collaborate with our team to ensure seamless integration of new technologies. - Provide guidance and support during the implementation process. **Qualifications:** - Proven experience in automation, technology implementation, or a related field. - Familiarity with tools and software relevant to client booking and payments. - Strong problem-solving skills and attention to detail. - Excellent communication and collaboration abilities. If you are interested in this opportunity, please submit your proposal, including your relevant experience, approach to the project. We are eager to hear your ideas on how to make our barbershop more tech-savvy and client-friendly. Join us in transforming [Barbershop Name] into a modern and efficient space for our clients! R**** barbershop is an equal opportunity employer and welcomes freelancers from diverse backgrounds.`
 
@@ -54,8 +52,9 @@ export async function getPropText(jobDescription) {
         Cheers,
         Tom`
 
-    let prompt = `Teniendo en cuenta esta propuesta que uso yo como template para postularme a trabajos: ${propuestaTemplate} y la descripción de esta búsqueda de trabajo en upwork para desarrolladores de appsheet: ${jobDescription}, creá un texto nuevo adaptando el template a esa descripción para que yo pueda copiarlo y pegarlo en la propuesta. Que no suene a que leiste oraciones aisladas y hablás de eso especificamente para que se note que las leiste, que sea algo real.`
+    let prompt = `Me tengo que postular a esta oferta de trabajo: ${jobDescription}. Armá una cover letter usando esta como template: ${propuestaTemplate}`
     let answer = await callGemini(prompt);
+    console.log(answer)
     let cleanAnser = answer.replace(/\n/g, ' ');
     return cleanAnser;
 }

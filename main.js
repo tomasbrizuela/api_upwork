@@ -24,6 +24,7 @@ export async function tryManyTimesToGetData(url, retries = 0) {
         let jsonData = await callOpenAI(JSON.stringify(jsonMatch));
         jsonData = jsonData.replace(/```json|```/g, '').trim()
         let dataParsed = JSON.parse(jsonData);
+        console.log(dataParsed)
         return dataParsed;
 
     } catch (error) {
@@ -39,4 +40,3 @@ export async function tryManyTimesToGetData(url, retries = 0) {
 (async () => {
     await tryManyTimesToGetData()
 })();
-
